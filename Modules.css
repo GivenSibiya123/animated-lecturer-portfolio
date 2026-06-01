@@ -1,0 +1,97 @@
+/* ── MODULES SECTION ── */
+
+#modules {
+  padding: 6rem 4rem;
+  position: relative;
+  z-index: 1;
+}
+
+#modules h2 {
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--white);
+  margin-bottom: 1rem;
+}
+
+.modules-intro {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  line-height: 1.8;
+  color: rgba(244,248,245,0.7);
+}
+
+.modules-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.module-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.module-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    var(--mint-glow),
+    transparent
+  );
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.module-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--mint);
+  box-shadow: 0 12px 35px rgba(61,214,140,0.15);
+}
+
+.module-card:hover::before {
+  opacity: 1;
+}
+
+.module-code {
+  display: inline-block;
+  color: var(--mint);
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.module-card h3 {
+  color: var(--white);
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.module-card p {
+  color: rgba(244,248,245,0.7);
+  line-height: 1.8;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── RESPONSIVE ── */
+
+@media (max-width: 860px) {
+  #modules {
+    padding: 5rem 2rem;
+  }
+}
