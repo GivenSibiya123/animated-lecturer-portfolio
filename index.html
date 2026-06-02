@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mr. Edward van Niekerk — Lecturer Portfolio</title>
+
+  <!-- ── FONTS ── -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- ── CSS FILES (one per section) ── -->
+  <link rel="stylesheet" href="hero-section.css" />
+  <link rel="stylesheet" href="About.css" />
+  <link rel="stylesheet" href="Modules.css" />
+  <link rel="stylesheet" href="fun-facts-section.css" />
+  <link rel="stylesheet" href="quote-wall.css" />
+  <link rel="stylesheet" href="contact-section.css" />
+
+  <!-- ── NAVIGATION STYLES ── -->
+  <style>
+    /* ── NAV ── */
+    :root {
+      --black:      #0a0f0a;
+      --card:       #141a14;
+      --mint:       #3dd68c;
+      --mint-faint: rgba(61, 214, 140, 0.06);
+      --white:      #f4f8f5;
+      --muted:      #7a9a82;
+      --border:     rgba(61, 214, 140, 0.15);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Fixed navigation bar */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 999;
+      background: rgba(10, 15, 10, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 0.5px solid var(--border);
+      padding: 0 4rem;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .nav-logo span {
+      color: var(--mint);
+      font-style: italic;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--mint);
+    }
+
+    /* Hamburger for mobile */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 1.5px;
+      background: var(--white);
+      transition: all 0.3s;
+    }
+
+    /* Push all sections below navbar */
+    #hero {
+      padding-top: 60px;
+    }
+
+    @media (max-width: 768px) {
+      #navbar { padding: 0 1.5rem; }
+
+      .nav-toggle { display: flex; }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 60px; left: 0; right: 0;
+        background: rgba(10, 15, 10, 0.97);
+        flex-direction: column;
+        gap: 0;
+        border-bottom: 0.5px solid var(--border);
+      }
+
+      .nav-links.open { display: flex; }
+
+      .nav-links li { border-top: 0.5px solid var(--border); }
+
+      .nav-links a {
+        display: block;
+        padding: 1rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════
+       NAVIGATION
+  ══════════════════════════════════════ -->
+  <nav id="navbar">
+    <a href="#hero" class="nav-logo">Mr. <span>van Niekerk</span></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#modules">Modules</a></li>
+      <li><a href="#fun-facts">Fun Facts</a></li>
+      <li><a href="#quotes">Quotes</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ══════════════════════════════════════
+       SECTION 1 — HERO (Iola Lesolang)
+  ══════════════════════════════════════ -->
+  <canvas id="particleCanvas"></canvas>
+
+  <section id="hero">
+    <div class="hero-inner">
+
+      <div class="hero-text">
+        <span class="hero-badge">Department Head · Business Science</span>
+        <h1 class="hero-name">
+          <span class="word">Mr.</span>
+          <span class="word accent">Edward</span>
+          <span class="word">van Niekerk</span>
+        </h1>
+        <p class="hero-role">Pretoria Campus · Belgium Campus iTversity</p>
+        <p class="hero-tagline">
+          Very structured. Highly perceptive. An educator who believes
+          interactive engagement transforms how students think —
+          not just what they learn.
+        </p>
+        <div class="hero-cta">
+          <a href="#contact" class="btn-primary">Get in Touch</a>
+          <a href="#about" class="btn-ghost">Explore Profile</a>
+        </div>
+      </div>
+
+      <div class="hero-avatar">
+        <div class="avatar-stage">
+          <div class="orbit orbit-1"></div>
+          <div class="orbit orbit-2"></div>
+          <div class="orbit orbit-3"></div>
+          <div class="avatar-glow"></div>
+          <svg class="avatar-svg" viewBox="0 0 200 320" xmlns="http://www.w3.org/2000/svg" aria-label="Animated avatar of Mr. Edward van Niekerk" role="img">
+            <defs>
+              <radialGradient id="faceGrad" cx="50%" cy="40%" r="55%">
+                <stop offset="0%" stop-color="#f5e8d8"/>
+                <stop offset="100%" stop-color="#e8d5be"/>
+              </radialGradient>
+              <radialGradient id="glassLens" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="rgba(61,214,140,0.14)"/>
+                <stop offset="100%" stop-color="rgba(61,214,140,0.03)"/>
+              </radialGradient>
+              <radialGradient id="bodyGlow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="rgba(61,214,140,0.30)"/>
+                <stop offset="100%" stop-color="transparent"/>
+              </radialGradient>
+              <linearGradient id="suitGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#1a2b1e"/>
+                <stop offset="100%" stop-color="#111a14"/>
+              </linearGradient>
+            </defs>
+            <ellipse cx="100" cy="225" rx="52" ry="58" fill="url(#bodyGlow)" opacity="0.55"/>
+            <rect x="58" y="183" width="84" height="105" rx="14" fill="url(#suitGrad)"/>
+            <rect x="88" y="184" width="24" height="65" fill="#243028"/>
+            <polygon points="100,192 94,232 100,239 106,232" fill="#3dd68c" opacity="0.88"/>
+            <rect x="96" y="188" width="8" height="7" rx="2" fill="#2bbf78"/>
+            <path d="M 88 184 L 74 202 L 100 193 L 126 202 L 112 184" fill="#1e2f24"/>
+            <rect x="89" y="166" width="22" height="22" rx="5" fill="#f0ddc8"/>
+            <ellipse cx="100" cy="146" rx="43" ry="51" fill="url(#faceGrad)"/>
+            <path d="M 59 132 Q 57 102 70 91 Q 83 80 100 79 Q 117 80 130 91 Q 143 102 141 132 Q 138 116 128 108 Q 116 97 100 95 Q 84 97 72 108 Q 62 116 59 132Z" fill="#c4bcac"/>
+            <path d="M 59 132 Q 61 154 64 166 Q 63 148 59 132Z" fill="#b0a898"/>
+            <path d="M 141 132 Q 139 154 136 166 Q 137 148 141 132Z" fill="#b0a898"/>
+            <ellipse cx="58" cy="146" rx="8" ry="12" fill="#e8d5be"/>
+            <ellipse cx="142" cy="146" rx="8" ry="12" fill="#e8d5be"/>
+            <ellipse cx="58" cy="146" rx="5" ry="8" fill="#d4c0a8" opacity="0.5"/>
+            <ellipse cx="142" cy="146" rx="5" ry="8" fill="#d4c0a8" opacity="0.5"/>
+            <rect x="69" y="135" width="27" height="19" rx="6" fill="url(#glassLens)" stroke="#3dd68c" stroke-width="1.6"/>
+            <rect x="103" y="135" width="27" height="19" rx="6" fill="url(#glassLens)" stroke="#3dd68c" stroke-width="1.6"/>
+            <line x1="96" y1="145" x2="103" y2="145" stroke="#3dd68c" stroke-width="1.6"/>
+            <line x1="69" y1="144" x2="58" y2="142" stroke="#3dd68c" stroke-width="1.6"/>
+            <line x1="130" y1="144" x2="141" y2="142" stroke="#3dd68c" stroke-width="1.6"/>
+            <rect x="71" y="137" width="5" height="3" rx="1.5" fill="white" opacity="0.25"/>
+            <rect x="105" y="137" width="5" height="3" rx="1.5" fill="white" opacity="0.25"/>
+            <g class="eye-group">
+              <ellipse cx="82" cy="145" rx="6.5" ry="6.5" fill="#243020"/>
+              <ellipse cx="116" cy="145" rx="6.5" ry="6.5" fill="#243020"/>
+              <circle cx="84" cy="143" r="1.8" fill="white" opacity="0.85"/>
+              <circle cx="118" cy="143" r="1.8" fill="white" opacity="0.85"/>
+              <circle cx="80" cy="147" r="0.9" fill="rgba(61,214,140,0.7)"/>
+              <circle cx="114" cy="147" r="0.9" fill="rgba(61,214,140,0.7)"/>
+            </g>
+            <path d="M 74 133 Q 82 130 91 132" stroke="#9a9080" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+            <path d="M 108 132 Q 117 130 125 133" stroke="#9a9080" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+            <path d="M 100 149 L 95 162 Q 100 166 105 162" stroke="#c8a080" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+            <path d="M 89 171 Q 100 177 111 171" stroke="#b07860" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+            <circle cx="157" cy="98" r="4" fill="#3dd68c" opacity="0.55">
+              <animate attributeName="opacity" values="0.55;1;0.55" dur="2.2s" repeatCount="indefinite"/>
+              <animate attributeName="r" values="4;6;4" dur="2.2s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="43" cy="118" r="3" fill="#3dd68c" opacity="0.38">
+              <animate attributeName="opacity" values="0.38;0.75;0.38" dur="2.8s" repeatCount="indefinite"/>
+              <animate attributeName="r" values="3;5;3" dur="2.8s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="162" cy="190" r="2.5" fill="#3dd68c" opacity="0.3">
+              <animate attributeName="opacity" values="0.3;0.65;0.3" dur="3.4s" repeatCount="indefinite"/>
+            </circle>
+          </svg>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SECTION 2 — ABOUT (Bophelo Rantho)
+  ══════════════════════════════════════ -->
+  <section id="about" class="reveal">
+
+    <h2>About</h2>
+
+    <p class="about-intro">
+      Mr. Edward van Niekerk is a structured and interactive lecturer who
+      specializes in engaging students through questions and answers.
+    </p>
+
+    <div class="about-container">
+      <div class="about-card">
+        <h3>Professional Tagline</h3>
+        <p>Very Structured</p>
+      </div>
+      <div class="about-card">
+        <h3>Teaching Philosophy</h3>
+        <p>Interactive engagement through questions and answers</p>
+      </div>
+      <div class="about-card">
+        <h3>Favourite Quote</h3>
+        <p>"To thy own self be true" — Shakespeare</p>
+      </div>
+    </div>
+
+    <div class="about-stats">
+      <div class="stat-box">
+        <h3 class="about-counter" data-target="3">0</h3>
+        <p>Modules</p>
+      </div>
+      <div class="stat-box">
+        <h3 class="about-counter" data-target="15">0</h3>
+        <p>Years Experience</p>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SECTION 3 — MODULES (Prince Ndlala)
+  ══════════════════════════════════════ -->
+  <section id="modules">
+
+    <div class="section-header">
+      <span class="section-badge fade-in">Modules & Expertise</span>
+      <h2 class="section-title fade-in">What he <span class="accent">teaches</span></h2>
+      <p class="section-subtitle fade-in">Hover or tap each card to explore the modules Mr. van Niekerk delivers.</p>
+    </div>
+
+    <div class="modules-grid">
+
+      <div class="module-card fade-in" tabindex="0" aria-label="WPR161 Word Processing">
+        <div class="card-inner">
+          <div class="card-front">
+            <div class="card-accent"></div>
+            <span class="module-code">WPR161</span>
+            <h3 class="module-name">Word Processing</h3>
+            <p class="module-level">First Year · Core Module</p>
+            <div class="flip-hint">↗ hover to explore</div>
+          </div>
+          <div class="card-back">
+            <div class="card-accent"></div>
+            <span class="module-code">WPR161</span>
+            <h3 class="module-name">Word Processing</h3>
+            <p class="module-desc">Develops professional document creation skills using industry-standard word processing tools. Students learn formatting, templates, and structured document design for the workplace.</p>
+            <div class="module-tags">
+              <span class="tag">Documents</span>
+              <span class="tag">Formatting</span>
+              <span class="tag">Professional</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="module-card fade-in" tabindex="0" aria-label="ACW181 Academic Writing">
+        <div class="card-inner">
+          <div class="card-front">
+            <div class="card-accent"></div>
+            <span class="module-code">ACW181</span>
+            <h3 class="module-name">Academic Writing</h3>
+            <p class="module-level">First Year · Core Module</p>
+            <div class="flip-hint">↗ hover to explore</div>
+          </div>
+          <div class="card-back">
+            <div class="card-accent"></div>
+            <span class="module-code">ACW181</span>
+            <h3 class="module-name">Academic Writing</h3>
+            <p class="module-desc">Equips students with the skills to produce structured, evidence-based academic work. Covers research methodology, referencing, argumentation, and scholarly communication.</p>
+            <div class="module-tags">
+              <span class="tag">Research</span>
+              <span class="tag">Writing</span>
+              <span class="tag">Referencing</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="module-card fade-in" tabindex="0" aria-label="ETH271 Ethics">
+        <div class="card-inner">
+          <div class="card-front">
+            <div class="card-accent"></div>
+            <span class="module-code">ETH271</span>
+            <h3 class="module-name">Ethics</h3>
+            <p class="module-level">Second Year · Core Module</p>
+            <div class="flip-hint">↗ hover to explore</div>
+          </div>
+          <div class="card-back">
+            <div class="card-accent"></div>
+            <span class="module-code">ETH271</span>
+            <h3 class="module-name">Ethics</h3>
+            <p class="module-desc">Explores ethical frameworks, moral reasoning, and professional responsibility in the IT industry. Students engage with real-world dilemmas and develop principled decision-making skills.</p>
+            <div class="module-tags">
+              <span class="tag">Ethics</span>
+              <span class="tag">Reasoning</span>
+              <span class="tag">IT Industry</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="qualifications-card fade-in">
+      <div class="qual-label">Academic Qualifications</div>
+      <div class="qual-items">
+        <div class="qual-item">
+          <span class="qual-icon">🎓</span>
+          <div>
+            <p class="qual-degree">Bachelor of Education</p>
+            <p class="qual-institution">University of South Africa (UNISA)</p>
+          </div>
+        </div>
+        <div class="qual-divider"></div>
+        <div class="qual-item">
+          <span class="qual-icon">🏅</span>
+          <div>
+            <p class="qual-degree">Honours in Computing Education</p>
+            <p class="qual-institution">University of South Africa (UNISA)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SECTION 4 — FUN FACTS (Othniel Kasper)
+  ══════════════════════════════════════ -->
+  <section id="fun-facts">
+
+    <p class="section-label fade-in">Fun Facts & Superpowers</p>
+    <h2 class="section-title fade-in">What makes him <span class="accent">extraordinary</span></h2>
+    <p class="funsection-subtitle fade-in">Hover or tap each card to reveal the truth about Mr. van Niekerk.</p>
+
+    <div class="cards-grid">
+
+      <div class="card card-hero fade-in" tabindex="0" role="button" aria-label="Superpower card">
+        <div>
+          <div class="card-accent"></div>
+          <span class="card-tag">⚡ Superpower</span>
+          <h3 class="card-title">The Lizard Instinct</h3>
+          <div class="card-reveal">
+            <p>Like the Lizard from Hopper, Mr. van Niekerk possesses lightning-fast perception and adaptability. His superpower is reading a room — and a student — with uncanny precision.</p>
+          </div>
+          <p class="card-hint">↗ hover to reveal</p>
+        </div>
+        <span class="card-emoji">🦎</span>
+      </div>
+
+      <div class="card fade-in" tabindex="0" role="button" aria-label="Fun fact: all in the eyes">
+        <div class="card-accent"></div>
+        <span class="card-emoji">👁️</span>
+        <span class="card-tag">🎯 Fun Fact</span>
+        <h3 class="card-title">He always knows.</h3>
+        <div class="card-reveal">
+          <p>Mr. van Niekerk can tell when a student is cheating — or simply lost — just by looking at them. It's all in the eyes. Don't try it.</p>
+        </div>
+        <p class="card-hint">↗ hover to reveal</p>
+      </div>
+
+      <div class="card fade-in" tabindex="0" role="button" aria-label="Fun fact: structure">
+        <div class="card-accent"></div>
+        <span class="card-emoji">📐</span>
+        <span class="card-tag">🏗️ Teaching Style</span>
+        <h3 class="card-title">Structure is everything.</h3>
+        <div class="card-reveal">
+          <p>His professional tagline says it all — "Very Structured." Every lecture, every explanation, every interaction is deliberate, ordered, and purposeful.</p>
+        </div>
+        <p class="card-hint">↗ hover to reveal</p>
+      </div>
+
+      <div class="card fade-in" tabindex="0" role="button" aria-label="Fun fact: teaching philosophy">
+        <div class="card-accent"></div>
+        <span class="card-emoji">🗣️</span>
+        <span class="card-tag">💡 Philosophy</span>
+        <h3 class="card-title">He teaches by asking.</h3>
+        <div class="card-reveal">
+          <p>Interactive. Engaging. Question-driven. Mr. van Niekerk believes real understanding only comes through dialogue — so expect to be called on.</p>
+        </div>
+        <p class="card-hint">↗ hover to reveal</p>
+      </div>
+
+      <div class="card fade-in" tabindex="0" role="button" aria-label="Fun fact: Shakespeare quote">
+        <div class="card-accent"></div>
+        <span class="card-emoji">📜</span>
+        <span class="card-tag">✍️ Words to Live By</span>
+        <h3 class="card-title">Shakespeare approved.</h3>
+        <div class="card-reveal">
+          <p>His favourite quote: "To thy own self be true." A reminder he carries into every classroom — be authentic, be honest, and own who you are.</p>
+        </div>
+        <p class="card-hint">↗ hover to reveal</p>
+      </div>
+
+    </div>
+
+    <div class="bottom-quote fade-in">
+      <blockquote>"To thy own self be true."</blockquote>
+      <cite>— William Shakespeare, as quoted by Mr. Edward van Niekerk</cite>
+    </div>
+
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SECTION 5 — QUOTE WALL (Iola Lesolang)
+  ══════════════════════════════════════ -->
+  <section id="quotes">
+
+    <div class="section-header">
+      <span class="section-badge fade-in">Quote Wall</span>
+      <h2 class="section-title fade-in">Words that <span class="accent">shape minds</span></h2>
+      <p class="quotesection-subtitle fade-in">Teaching wisdom from Mr. Edward van Niekerk — auto-rotating every few seconds.</p>
+    </div>
+
+    <div class="carousel-wrapper fade-in">
+      <div class="quote-mark">"</div>
+      <div class="carousel">
+
+        <div class="quote-slide active">
+          <blockquote class="quote-text">To thy own self be true.</blockquote>
+          <div class="quote-meta">
+            <span class="quote-author">— William Shakespeare</span>
+            <span class="quote-context">Mr. van Niekerk's favourite teaching quote</span>
+          </div>
+        </div>
+
+        <div class="quote-slide">
+          <blockquote class="quote-text">Real understanding only comes through dialogue — not silence.</blockquote>
+          <div class="quote-meta">
+            <span class="quote-author">— Mr. Edward van Niekerk</span>
+            <span class="quote-context">On interactive learning</span>
+          </div>
+        </div>
+
+        <div class="quote-slide">
+          <blockquote class="quote-text">Structure is not a limitation. It is the foundation of freedom.</blockquote>
+          <div class="quote-meta">
+            <span class="quote-author">— Mr. Edward van Niekerk</span>
+            <span class="quote-context">On his teaching philosophy</span>
+          </div>
+        </div>
+
+        <div class="quote-slide">
+          <blockquote class="quote-text">I can see it in your eyes — whether you understand or not. Don't pretend.</blockquote>
+          <div class="quote-meta">
+            <span class="quote-author">— Mr. Edward van Niekerk</span>
+            <span class="quote-context">To his students</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="carousel-dots">
+        <button class="dot active" aria-label="Quote 1"></button>
+        <button class="dot" aria-label="Quote 2"></button>
+        <button class="dot" aria-label="Quote 3"></button>
+        <button class="dot" aria-label="Quote 4"></button>
+      </div>
+
+      <div class="carousel-controls">
+        <button class="ctrl-btn" id="prevBtn" aria-label="Previous quote">&#8592;</button>
+        <button class="ctrl-btn" id="nextBtn" aria-label="Next quote">&#8594;</button>
+      </div>
+
+    </div>
+
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SECTION 6 — CONTACT (Bophelo Rantho)
+  ══════════════════════════════════════ -->
+  <section id="contact">
+
+    <div class="section-header">
+      <span class="section-badge fade-in">Contact & Connect</span>
+      <h2 class="section-title fade-in">Let's <span class="accent">connect</span></h2>
+       <p class="consection-subtitle fade-in">Reach out to Mr. van Niekerk through official Belgium Campus channels.</p>
+     
+    </div>
+
+    <div class="contact-grid">
+
+      <div class="contact-card fade-in">
+        <div class="card-accent"></div>
+        <span class="card-icon">🕐</span>
+        <h3 class="card-title">Office Hours</h3>
+        <ul class="info-list">
+          <li><span class="info-label">Monday</span><span class="info-value">09:00 – 11:00</span></li>
+          <li><span class="info-label">Wednesday</span><span class="info-value">13:00 – 15:00</span></li>
+          <li><span class="info-label">Friday</span><span class="info-value">By appointment</span></li>
+        </ul>
+      </div>
+
+      <div class="contact-card fade-in">
+        <div class="card-accent"></div>
+        <span class="card-icon">🏛️</span>
+        <h3 class="card-title">Department</h3>
+        <ul class="info-list">
+          <li><span class="info-label">Faculty</span><span class="info-value">Business Science</span></li>
+          <li><span class="info-label">Campus</span><span class="info-value">Pretoria Campus</span></li>
+          <li><span class="info-label">Institution</span><span class="info-value">Belgium Campus iTversity</span></li>
+        </ul>
+      </div>
+
+      <div class="contact-card fade-in">
+        <div class="card-accent"></div>
+        <span class="card-icon">📚</span>
+        <h3 class="card-title">Modules Taught</h3>
+        <ul class="info-list">
+          <li><span class="info-label">WPR161</span><span class="info-value">Word Processing</span></li>
+          <li><span class="info-label">ACW181</span><span class="info-value">Academic Writing</span></li>
+          <li><span class="info-label">ETH271</span><span class="info-value">Ethics</span></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="cta-wrapper fade-in">
+      <p class="cta-note">For academic enquiries, please use official Belgium Campus communication channels.</p>
+      <a href="https://www.belgiumcampus.ac.za" target="_blank" class="btn-primary">
+        Visit Belgium Campus <span class="btn-arrow">↗</span>
+      </a>
+    </div>
+
+    <div class="footer-line fade-in">
+      <p>Portfolio built by INL261 Group 15 · Belgium Campus iTversity · 2026</p>
+    </div>
+
+  </section>
+
+  <!-- ══════════════════════════════════════
+       JAVASCRIPT FILES (one per section)
+  ══════════════════════════════════════ -->
+  <script src="hero-section.js"></script>
+  <script src="About.js"></script>
+  <script src="Modules.js"></script>
+  <script src="fun-facts-section.js"></script>
+  <script src="quote-wall.js"></script>
+  <script src="contact-section.js"></script>
+
+  <!-- Navigation toggle script -->
+  <script>
+    const navToggle = document.getElementById('navToggle');
+    const navLinks  = document.getElementById('navLinks');
+    navToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+    // Close menu when a link is clicked
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => navLinks.classList.remove('open'));
+    });
+  </script>
+
+</body>
+</html>

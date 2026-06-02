@@ -1,0 +1,275 @@
+/* ============================================================
+   fun-facts-section.css  —  Fun Facts & Superpowers Section
+   Edward van Niekerk Portfolio · INL261 Group 15
+   Ethics & Content Lead — Othniel Kasper
+   ============================================================ */
+
+/* ── CSS VARIABLES (matching site theme) ── */
+:root {
+  --black:      #0a0f0a;
+  --card:       #141a14;
+  --mint:       #3dd68c;
+  --mint-glow:  rgba(61, 214, 140, 0.18);
+  --mint-faint: rgba(61, 214, 140, 0.06);
+  --white:      #f4f8f5;
+  --muted:      #7a9a82;
+  --border:     rgba(61, 214, 140, 0.15);
+}
+
+/* ── RESET ── */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* ── SECTION WRAPPER ── */
+#fun-facts {
+  position: relative;
+  z-index: 1;
+  padding: 6rem 4rem 4rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ── SECTION HEADER ── */
+.section-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--mint);
+  border: 0.5px solid var(--mint);
+  padding: 0.38rem 1.1rem;
+  border-radius: 100px;
+  margin-bottom: 1.5rem;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 1.1;
+  margin-bottom: 0.7rem;
+  color: var(--white);
+}
+
+.section-title .accent {
+  font-style: italic;
+  color: var(--mint);
+}
+
+.funsection-subtitle {
+  font-size: 0.9rem;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+  margin-bottom: 3.5rem;
+  max-width: 480px;
+}
+
+/* ── CARDS GRID ── */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+/* ── CARD BASE ── */
+.card {
+  background: var(--card);
+  border: 0.5px solid var(--border);
+  border-radius: 12px;
+  padding: 32px 28px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  outline: none;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--mint-faint) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.35s;
+  border-radius: 12px;
+}
+
+.card:hover,
+.card:focus,
+.card.revealed {
+  border-color: var(--mint);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px var(--mint-glow);
+}
+
+.card:hover::before,
+.card:focus::before,
+.card.revealed::before {
+  opacity: 1;
+}
+
+/* ── CARD ACCENT BAR ── */
+.card-accent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--border);
+  transition: background 0.3s;
+  border-radius: 12px 0 0 12px;
+}
+
+.card:hover .card-accent,
+.card:focus .card-accent,
+.card.revealed .card-accent {
+  background: var(--mint);
+}
+
+/* ── CARD ELEMENTS ── */
+.card-emoji {
+  font-size: 2.2rem;
+  margin-bottom: 16px;
+  display: block;
+  transition: transform 0.4s cubic-bezier(.34, 1.56, .64, 1);
+}
+
+.card:hover .card-emoji,
+.card:focus .card-emoji,
+.card.revealed .card-emoji {
+  transform: scale(1.2) rotate(-5deg);
+}
+
+.card-tag {
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  color: var(--mint);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+
+/* ── REVEAL CONTENT ── */
+.card-reveal {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.5s ease, opacity 0.4s ease;
+}
+
+.card:hover .card-reveal,
+.card:focus .card-reveal,
+.card.revealed .card-reveal {
+  max-height: 200px;
+  opacity: 1;
+}
+
+.card-reveal p {
+  font-size: 0.85rem;
+  line-height: 1.75;
+  color: rgba(244, 248, 245, 0.65);
+}
+
+/* ── CARD HINT ── */
+.card-hint {
+  font-size: 0.68rem;
+  color: var(--muted);
+  margin-top: 16px;
+  letter-spacing: 0.1em;
+  transition: color 0.3s;
+}
+
+.card:hover .card-hint,
+.card:focus .card-hint,
+.card.revealed .card-hint {
+  color: var(--mint);
+}
+
+/* ── HERO CARD (full width) ── */
+.card-hero {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 32px;
+  background: linear-gradient(120deg, #0f1f14 0%, var(--card) 100%);
+}
+
+.card-hero .card-emoji {
+  font-size: 3.8rem;
+  margin-bottom: 0;
+  text-align: right;
+}
+
+/* ── BOTTOM QUOTE ── */
+.bottom-quote {
+  margin-top: 56px;
+  padding: 28px 32px;
+  border-left: 0.5px solid var(--mint);
+  background: var(--card);
+  border-radius: 0 12px 12px 0;
+}
+
+.bottom-quote blockquote {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-style: italic;
+  color: var(--white);
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.bottom-quote cite {
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: var(--mint);
+  text-transform: uppercase;
+}
+
+/* ── SCROLL FADE-IN ── */
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 860px) {
+  #fun-facts {
+    padding: 4rem 2rem 3rem;
+  }
+
+  .card-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .card-hero .card-emoji {
+    text-align: left;
+    font-size: 3rem;
+  }
+}
