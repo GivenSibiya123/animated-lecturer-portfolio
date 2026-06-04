@@ -133,3 +133,17 @@ watching only the automatic rotation with no way to control it.
 This fails the WCAG 2.1 AA requirement for keyboard accessibility.
 Action: Flagged to Quote Wall developer to fix button keyboard 
 reach and ensure buttons display a visible outline when focused.
+
+AUDIT 4 — CONTACT SECTION
+Result: FAIL
+Finding: All three information cards in the Contact section — 
+Office Hours, Department, and Modules Taught — are completely 
+skipped by the Tab key. Keyboard focus jumps directly from the 
+section heading straight to the Visit Belgium Campus button at 
+the bottom. Users navigating without a mouse cannot read or 
+access any of the contact information at all.
+Root cause: The card containers are plain div elements with no 
+tabindex attribute and no focusable elements inside them, making 
+them completely invisible to keyboard navigation.
+Action: Flagged to Contact section developer to add tabindex to 
+each contact card so keyboard users can reach them.
