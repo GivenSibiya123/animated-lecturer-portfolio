@@ -1,0 +1,115 @@
+QA / ACCESSIBILITY AUDIT LOG
+Lead: Potego Selepe
+Branch: testing
+Project: Animated Lecturer Portfolio — INL261 Group 15
+
+=============================================
+CODE BUGS FOUND
+=============================================
+
+BUG 1 — ABOUT SECTION (About.css)
+Responsible: Abonga J.
+Problem: The mobile layout rule has its closing bracket on the same 
+line as its opening bracket, so it closes immediately and does nothing. 
+The About card grid is forced into one column at all screen sizes 
+instead of only on mobile.
+Action: Flagged to Abonga J. to fix the bracket placement.
+
+BUG 2 — CONTACT SECTION (contact-section.js)
+Responsible: Bophelo R.
+Problem: The fade-in tracker was named contactobserver but the code 
+uses the name observer everywhere, which belongs to the Fun Facts 
+section. Contact section fade-ins only work by accident due to 
+script load order.
+Action: Flagged to Bophelo R. to correct all variable name references.
+
+BUG 3 — QUOTE WALL SECTION (quote-wall.js)
+Responsible: Iola L.
+Problem: Same issue as Contact section. The tracker was named 
+quoteobserver but the code uses observer throughout. Quote Wall 
+borrows the Fun Facts tracker without anyone setting that up 
+intentionally.
+Action: Flagged to Iola L. to correct all variable name references.
+
+BUG 4 — QUOTE WALL SECTION (quote-wall.css)
+Responsible: Iola L.
+Problem: The subtitle CSS class is spelled qoutesection-subtitle 
+instead of quotesection-subtitle. The rule never attaches to any 
+element so the subtitle text shows as plain unstyled text.
+Action: Flagged to Iola L. to correct the spelling.
+
+BUG 5 — ABOUT SECTION (About.js)
+Responsible: Abonga J.
+Problem: The typing effect looks for an element labelled about-intro 
+but no element in the HTML has that label. The code fails silently 
+and the typing animation never plays.
+Action: Flagged to Abonga J. to add the missing label to the paragraph.
+
+BUG 6 — MODULES SECTION (Modules.css)
+Responsible: Phenyo M. / Prince N.
+Problem: The qualifications card uses a fixed left margin of 15rem 
+which only looks correct at one screen width. On smaller screens 
+the card shifts out of position and looks misaligned.
+Action: Flagged to Dev Leads to replace with automatic centering.
+
+=============================================
+KEYBOARD ACCESSIBILITY AUDIT RESULTS
+=============================================
+
+AUDIT 1 — HERO SECTION / NAVIGATION BAR
+Result: FAIL
+Responsible: Iola L.
+Finding: Tabbing through the navigation links (Home, About, Modules, 
+Fun Facts, Quotes, Contact) and hero buttons produces no visible 
+focus indicator on any element. Keyboard-only users cannot see 
+where their focus is sitting.
+Action: Reported to Iola L. to add a global focus outline rule in CSS.
+
+AUDIT 2 — FUN FACTS SECTION
+Result: PASS
+Responsible: Othniel K.
+Finding: All Fun Facts cards correctly receive visible focus when 
+tabbed to. Pressing Enter or Space correctly triggers the reveal 
+animation. Keyboard accessibility working as intended in this section.
+Action: No changes needed.
+
+AUDIT 3 — QUOTE WALL SECTION
+Result: FAIL
+Responsible: Iola L.
+Finding: The Previous and Next carousel buttons are completely 
+skipped by the Tab key. Keyboard users cannot manually navigate 
+between quotes and are stuck with only the auto-rotation.
+Action: Reported to Iola L. to fix button focus and keyboard reach.
+
+AUDIT 4 — CONTACT SECTION
+Result: FAIL
+Responsible: Bophelo R.
+Finding: All three info cards (Office Hours, Department, Modules 
+Taught) are skipped entirely by the Tab key. Focus jumps straight 
+to the Visit Belgium Campus button at the bottom. Keyboard users 
+cannot access any of the contact information.
+Action: Reported to Bophelo R. to add tabindex to the card elements.
+
+AUDIT 5 — MODULES SECTION
+Result: FAIL
+Responsible: Phenyo M. / Prince N.
+Finding: The mouse-following green glow effect visible in the About 
+section disappears completely when scrolling into the Modules section. 
+The two sections look visually disconnected and inconsistent.
+Action: Reported to Dev Leads and Iola L. to extend or replicate 
+the glow effect into the Modules section.
+=============================================
+KEYBOARD ACCESSIBILITY AUDIT RESULTS
+=============================================
+
+AUDIT 1 — HERO SECTION AND NAVIGATION BAR
+Result: FAIL
+Finding: Tabbing through the navigation links Home, About, Modules, 
+Fun Facts, Quotes, and Contact and the hero buttons Get in Touch 
+and Explore Profile produces no visible focus indicator on any 
+element at all. A person navigating without a mouse has no way 
+of knowing which element their keyboard is currently sitting on.
+This fails the WCAG 2.1 AA requirement that all focusable elements 
+must have a visible focus indicator.
+Action: Flagged to UI section developer to add a global CSS focus 
+outline rule covering all links and buttons.
