@@ -113,3 +113,12 @@ This fails the WCAG 2.1 AA requirement that all focusable elements
 must have a visible focus indicator.
 Action: Flagged to UI section developer to add a global CSS focus 
 outline rule covering all links and buttons.
+
+AUDIT 2 — FUN FACTS SECTION
+Result: PASS
+Finding: All Fun Facts and Superpowers cards correctly receive 
+focus when tabbed to. A visible change appears on each card when 
+focused. Pressing Enter or Space correctly triggers the reveal 
+animation and shows the hidden description content.
+The keyboard event listeners and tabindex are working correctly.
+Action: No changes needed. This section passes keyboard accessibility.
