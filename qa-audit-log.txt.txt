@@ -122,3 +122,14 @@ focused. Pressing Enter or Space correctly triggers the reveal
 animation and shows the hidden description content.
 The keyboard event listeners and tabindex are working correctly.
 Action: No changes needed. This section passes keyboard accessibility.
+
+AUDIT 3 — QUOTE WALL SECTION
+Result: FAIL
+Finding: The Previous and Next arrow buttons on the sides of the 
+carousel are completely skipped by the Tab key. Keyboard focus 
+jumps straight past them as if they do not exist on the page. 
+Keyboard users cannot manually move between quotes and are stuck 
+watching only the automatic rotation with no way to control it.
+This fails the WCAG 2.1 AA requirement for keyboard accessibility.
+Action: Flagged to Quote Wall developer to fix button keyboard 
+reach and ensure buttons display a visible outline when focused.
