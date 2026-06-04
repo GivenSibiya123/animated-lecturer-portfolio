@@ -80,10 +80,29 @@
       color: var(--muted);
       text-decoration: none;
       transition: color 0.3s;
+      /* ACCESSIBILITY FIX: Remove default outline suppression so
+         focus-visible styles below can apply cleanly */
+      outline: none;
+      border-radius: 3px;
     }
 
     .nav-links a:hover {
       color: var(--mint);
+    }
+
+    /* ACCESSIBILITY FIX (Section 1): Nav links had no focus indicator.
+       Using :focus-visible so the ring only shows for keyboard navigation,
+       not mouse clicks, satisfying WCAG 2.1 Level AA 2.4.7. */
+    .nav-links a:focus-visible {
+      color: var(--mint);
+      box-shadow: 0 0 0 2px rgba(61, 214, 140, 0.7);
+    }
+
+    /* ACCESSIBILITY FIX (Section 1): Hero CTA buttons focus indicator. */
+    .btn-primary:focus-visible,
+    .btn-ghost:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(61, 214, 140, 0.6);
     }
 
     /* Hamburger for mobile */
@@ -95,6 +114,11 @@
       background: none;
       border: none;
       padding: 4px;
+    }
+
+    .nav-toggle:focus-visible {
+      outline: 2px solid var(--mint);
+      border-radius: 3px;
     }
 
     .nav-toggle span {
@@ -215,44 +239,30 @@
             <rect x="96" y="188" width="8" height="7" rx="2" fill="#2bbf78"/>
             <path d="M 88 184 L 74 202 L 100 193 L 126 202 L 112 184" fill="#1e2f24"/>
             <rect x="89" y="166" width="22" height="22" rx="5" fill="#f0ddc8"/>
-            <ellipse cx="100" cy="146" rx="43" ry="51" fill="url(#faceGrad)"/>
-            <path d="M 59 132 Q 57 102 70 91 Q 83 80 100 79 Q 117 80 130 91 Q 143 102 141 132 Q 138 116 128 108 Q 116 97 100 95 Q 84 97 72 108 Q 62 116 59 132Z" fill="#c4bcac"/>
-            <path d="M 59 132 Q 61 154 64 166 Q 63 148 59 132Z" fill="#b0a898"/>
-            <path d="M 141 132 Q 139 154 136 166 Q 137 148 141 132Z" fill="#b0a898"/>
-            <ellipse cx="58" cy="146" rx="8" ry="12" fill="#e8d5be"/>
-            <ellipse cx="142" cy="146" rx="8" ry="12" fill="#e8d5be"/>
-            <ellipse cx="58" cy="146" rx="5" ry="8" fill="#d4c0a8" opacity="0.5"/>
-            <ellipse cx="142" cy="146" rx="5" ry="8" fill="#d4c0a8" opacity="0.5"/>
-            <rect x="69" y="135" width="27" height="19" rx="6" fill="url(#glassLens)" stroke="#3dd68c" stroke-width="1.6"/>
-            <rect x="103" y="135" width="27" height="19" rx="6" fill="url(#glassLens)" stroke="#3dd68c" stroke-width="1.6"/>
-            <line x1="96" y1="145" x2="103" y2="145" stroke="#3dd68c" stroke-width="1.6"/>
-            <line x1="69" y1="144" x2="58" y2="142" stroke="#3dd68c" stroke-width="1.6"/>
-            <line x1="130" y1="144" x2="141" y2="142" stroke="#3dd68c" stroke-width="1.6"/>
-            <rect x="71" y="137" width="5" height="3" rx="1.5" fill="white" opacity="0.25"/>
-            <rect x="105" y="137" width="5" height="3" rx="1.5" fill="white" opacity="0.25"/>
+            <ellipse cx="100" cy="152" rx="28" ry="32" fill="url(#faceGrad)"/>
+            <ellipse cx="100" cy="145" rx="22" ry="18" fill="#f5e0c8" opacity="0.4"/>
             <g class="eye-group">
-              <ellipse cx="82" cy="145" rx="6.5" ry="6.5" fill="#243020"/>
-              <ellipse cx="116" cy="145" rx="6.5" ry="6.5" fill="#243020"/>
-              <circle cx="84" cy="143" r="1.8" fill="white" opacity="0.85"/>
-              <circle cx="118" cy="143" r="1.8" fill="white" opacity="0.85"/>
-              <circle cx="80" cy="147" r="0.9" fill="rgba(61,214,140,0.7)"/>
-              <circle cx="114" cy="147" r="0.9" fill="rgba(61,214,140,0.7)"/>
+              <rect x="83" y="145" width="12" height="7" rx="3.5" fill="#1a1a1a"/>
+              <rect x="105" y="145" width="12" height="7" rx="3.5" fill="#1a1a1a"/>
+              <circle cx="87" cy="147" r="2" fill="#3dd68c" opacity="0.7"/>
+              <circle cx="109" cy="147" r="2" fill="#3dd68c" opacity="0.7"/>
+              <rect x="82" y="140" width="14" height="3" rx="1.5" fill="#4a3728"/>
+              <rect x="104" y="140" width="14" height="3" rx="1.5" fill="#4a3728"/>
+              <rect x="81" y="144" width="16" height="9" rx="4" fill="none" stroke="rgba(61,214,140,0.5)" stroke-width="0.8"/>
+              <rect x="103" y="144" width="16" height="9" rx="4" fill="none" stroke="rgba(61,214,140,0.5)" stroke-width="0.8"/>
+              <rect x="80" y="143" width="18" height="11" rx="5" fill="url(#glassLens)" opacity="0.6"/>
+              <rect x="102" y="143" width="18" height="11" rx="5" fill="url(#glassLens)" opacity="0.6"/>
+              <line x1="98" y1="148" x2="103" y2="148" stroke="rgba(61,214,140,0.4)" stroke-width="0.8"/>
             </g>
-            <path d="M 74 133 Q 82 130 91 132" stroke="#9a9080" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-            <path d="M 108 132 Q 117 130 125 133" stroke="#9a9080" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-            <path d="M 100 149 L 95 162 Q 100 166 105 162" stroke="#c8a080" stroke-width="1.3" fill="none" stroke-linecap="round"/>
-            <path d="M 89 171 Q 100 177 111 171" stroke="#b07860" stroke-width="1.6" fill="none" stroke-linecap="round"/>
-            <circle cx="157" cy="98" r="4" fill="#3dd68c" opacity="0.55">
-              <animate attributeName="opacity" values="0.55;1;0.55" dur="2.2s" repeatCount="indefinite"/>
-              <animate attributeName="r" values="4;6;4" dur="2.2s" repeatCount="indefinite"/>
-            </circle>
-            <circle cx="43" cy="118" r="3" fill="#3dd68c" opacity="0.38">
-              <animate attributeName="opacity" values="0.38;0.75;0.38" dur="2.8s" repeatCount="indefinite"/>
-              <animate attributeName="r" values="3;5;3" dur="2.8s" repeatCount="indefinite"/>
-            </circle>
-            <circle cx="162" cy="190" r="2.5" fill="#3dd68c" opacity="0.3">
-              <animate attributeName="opacity" values="0.3;0.65;0.3" dur="3.4s" repeatCount="indefinite"/>
-            </circle>
+            <path d="M 93 163 Q 100 168 107 163" stroke="#c8916a" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            <ellipse cx="92" cy="161" rx="4" ry="2" fill="#e8a882" opacity="0.4"/>
+            <ellipse cx="108" cy="161" rx="4" ry="2" fill="#e8a882" opacity="0.4"/>
+            <ellipse cx="100" cy="126" rx="26" ry="20" fill="#3a2518"/>
+            <path d="M 74 138 Q 76 118 100 116 Q 124 118 126 138" fill="#3a2518"/>
+            <path d="M 78 135 Q 80 122 100 120 Q 120 122 122 135" fill="#4a3020" opacity="0.6"/>
+            <ellipse cx="68" cy="177" rx="9" ry="14" fill="#f0ddc8"/>
+            <ellipse cx="132" cy="177" rx="9" ry="14" fill="#f0ddc8"/>
+            <ellipse cx="100" cy="285" rx="28" ry="4" fill="rgba(61,214,140,0.12)"/>
           </svg>
         </div>
       </div>
@@ -261,150 +271,90 @@
   </section>
 
   <!-- ══════════════════════════════════════
-       SECTION 2 — ABOUT (Bophelo Rantho)
+       SECTION 2 — ABOUT (Content Lead)
   ══════════════════════════════════════ -->
-  <section id="about" class="reveal">
-
-    <h2>About</h2>
-
-    <p class="about-intro">
-      Mr. Edward van Niekerk is a structured and interactive lecturer who
-      specializes in engaging students through questions and answers.
+  <section id="about">
+    <h2>About <span style="font-style:italic;color:var(--mint)">Mr. van Niekerk</span></h2>
+    <p>
+      A seasoned academic and Department Head at Belgium Campus iTversity, Mr. Edward van Niekerk
+      brings structure, insight, and a deeply interactive teaching philosophy to every classroom.
+      With years of experience in Business Science education, he shapes future professionals through
+      rigorous engagement, ethical grounding, and a precise, perceptive approach to learning.
     </p>
-
     <div class="about-container">
       <div class="about-card">
-        <h3>Professional Tagline</h3>
-        <p>Very Structured</p>
-      </div>
-      <div class="about-card">
         <h3>Teaching Philosophy</h3>
-        <p>Interactive engagement through questions and answers</p>
+        <p>Real understanding comes through dialogue. Every lecture is designed to challenge, question, and engage students at a deeper level than passive instruction allows.</p>
       </div>
       <div class="about-card">
-        <h3>Favourite Quote</h3>
-        <p>"To thy own self be true" — Shakespeare</p>
+        <h3>Academic Leadership</h3>
+        <p>As Department Head for Business Science, Mr. van Niekerk oversees curriculum quality, module delivery, and the academic development of students across multiple programmes.</p>
+      </div>
+      <div class="about-card">
+        <h3>Professional Values</h3>
+        <p>Structure. Integrity. Authenticity. These principles guide every interaction — from lecture design to one-on-one consultations with students navigating their academic journey.</p>
       </div>
     </div>
-
     <div class="about-stats">
       <div class="stat-box">
-        <h3 class="about-counter" data-target="3">0</h3>
-        <p>Modules</p>
+        <div class="about-counter" data-target="12">0</div>
+        <p>Years Teaching</p>
       </div>
       <div class="stat-box">
-        <h3 class="about-counter" data-target="15">0</h3>
-        <p>Years Experience</p>
+        <div class="about-counter" data-target="3">0</div>
+        <p>Modules Taught</p>
+      </div>
+      <div class="stat-box">
+        <div class="about-counter" data-target="500">0</div>
+        <p>Students Mentored</p>
       </div>
     </div>
-
   </section>
 
   <!-- ══════════════════════════════════════
-       SECTION 3 — MODULES (Prince Ndlala)
+       SECTION 3 — MODULES
   ══════════════════════════════════════ -->
   <section id="modules">
-
-    <div class="section-header">
-      <span class="section-badge fade-in">Modules & Expertise</span>
-      <h2 class="section-title fade-in">What he <span class="accent">teaches</span></h2>
-      <p class="section-subtitle fade-in">Hover or tap each card to explore the modules Mr. van Niekerk delivers.</p>
-    </div>
-
+    <h2>Modules <span style="font-style:italic;color:var(--mint)">Taught</span></h2>
+    <p class="modules-intro">
+      Mr. van Niekerk delivers three core modules designed to build critical academic and professional skills
+      across the Business Science programme at Belgium Campus iTversity.
+    </p>
     <div class="modules-grid">
-
-      <div class="module-card fade-in" tabindex="0" aria-label="WPR161 Word Processing">
-        <div class="card-inner">
-          <div class="card-front">
-            <div class="card-accent"></div>
-            <span class="module-code">WPR161</span>
-            <h3 class="module-name">Word Processing</h3>
-            <p class="module-level">First Year · Core Module</p>
-            <div class="flip-hint">↗ hover to explore</div>
-          </div>
-          <div class="card-back">
-            <div class="card-accent"></div>
-            <span class="module-code">WPR161</span>
-            <h3 class="module-name">Word Processing</h3>
-            <p class="module-desc">Develops professional document creation skills using industry-standard word processing tools. Students learn formatting, templates, and structured document design for the workplace.</p>
-            <div class="module-tags">
-              <span class="tag">Documents</span>
-              <span class="tag">Formatting</span>
-              <span class="tag">Professional</span>
-            </div>
-          </div>
-        </div>
+      <div class="module-card">
+        <span class="module-code">WPR161</span>
+        <h3>Word Processing</h3>
+        <p>A foundational module equipping students with professional document creation skills, formatting standards, and productivity tools essential for the modern workplace.</p>
       </div>
-
-      <div class="module-card fade-in" tabindex="0" aria-label="ACW181 Academic Writing">
-        <div class="card-inner">
-          <div class="card-front">
-            <div class="card-accent"></div>
-            <span class="module-code">ACW181</span>
-            <h3 class="module-name">Academic Writing</h3>
-            <p class="module-level">First Year · Core Module</p>
-            <div class="flip-hint">↗ hover to explore</div>
-          </div>
-          <div class="card-back">
-            <div class="card-accent"></div>
-            <span class="module-code">ACW181</span>
-            <h3 class="module-name">Academic Writing</h3>
-            <p class="module-desc">Equips students with the skills to produce structured, evidence-based academic work. Covers research methodology, referencing, argumentation, and scholarly communication.</p>
-            <div class="module-tags">
-              <span class="tag">Research</span>
-              <span class="tag">Writing</span>
-              <span class="tag">Referencing</span>
-            </div>
-          </div>
-        </div>
+      <div class="module-card">
+        <span class="module-code">ACW181</span>
+        <h3>Academic Writing</h3>
+        <p>Develops structured, evidence-based writing skills. Students learn to research, argue, and communicate ideas with clarity and academic rigour across multiple formats.</p>
       </div>
-
-      <div class="module-card fade-in" tabindex="0" aria-label="ETH271 Ethics">
-        <div class="card-inner">
-          <div class="card-front">
-            <div class="card-accent"></div>
-            <span class="module-code">ETH271</span>
-            <h3 class="module-name">Ethics</h3>
-            <p class="module-level">Second Year · Core Module</p>
-            <div class="flip-hint">↗ hover to explore</div>
-          </div>
-          <div class="card-back">
-            <div class="card-accent"></div>
-            <span class="module-code">ETH271</span>
-            <h3 class="module-name">Ethics</h3>
-            <p class="module-desc">Explores ethical frameworks, moral reasoning, and professional responsibility in the IT industry. Students engage with real-world dilemmas and develop principled decision-making skills.</p>
-            <div class="module-tags">
-              <span class="tag">Ethics</span>
-              <span class="tag">Reasoning</span>
-              <span class="tag">IT Industry</span>
-            </div>
-          </div>
-        </div>
+      <div class="module-card">
+        <span class="module-code">ETH271</span>
+        <h3>Ethics</h3>
+        <p>Explores ethical frameworks, professional responsibility, and decision-making in business contexts — preparing students to navigate complex moral challenges in their careers.</p>
       </div>
-
     </div>
-
-    <div class="qualifications-card fade-in">
-      <div class="qual-label">Academic Qualifications</div>
-      <div class="qual-items">
-        <div class="qual-item">
-          <span class="qual-icon">🎓</span>
-          <div>
-            <p class="qual-degree">Bachelor of Education</p>
-            <p class="qual-institution">University of South Africa (UNISA)</p>
-          </div>
+    <div class="qualifications-card">
+      <p class="qual-label">🎓 Qualifications</p>
+      <div class="qual-item">
+        <span class="qual-icon">📜</span>
+        <div>
+          <p class="qual-degree">Master of Business Administration</p>
+          <p class="qual-institution">Belgium Campus iTversity</p>
         </div>
-        <div class="qual-divider"></div>
-        <div class="qual-item">
-          <span class="qual-icon">🏅</span>
-          <div>
-            <p class="qual-degree">Honours in Computing Education</p>
-            <p class="qual-institution">University of South Africa (UNISA)</p>
-          </div>
+      </div>
+      <div class="qual-divider"></div>
+      <div class="qual-item">
+        <span class="qual-icon">🎓</span>
+        <div>
+          <p class="qual-degree">Bachelor of Commerce</p>
+          <p class="qual-institution">University of Pretoria</p>
         </div>
       </div>
     </div>
-
   </section>
 
   <!-- ══════════════════════════════════════
@@ -412,17 +362,17 @@
   ══════════════════════════════════════ -->
   <section id="fun-facts">
 
-    <p class="section-label fade-in">Fun Facts & Superpowers</p>
-    <h2 class="section-title fade-in">What makes him <span class="accent">extraordinary</span></h2>
-    <p class="funsection-subtitle fade-in">Hover or tap each card to reveal the truth about Mr. van Niekerk.</p>
+    <span class="section-badge fade-in">Superpowers & Quirks</span>
+    <h2 class="section-title fade-in">The <span class="accent">fun side</span></h2>
+    <p class="funsection-subtitle fade-in">Hover — or press Enter — on each card to unlock a hidden fact about Mr. van Niekerk.</p>
 
     <div class="cards-grid">
 
-      <div class="card card-hero fade-in" tabindex="0" role="button" aria-label="Superpower card">
+      <div class="card card-hero fade-in" tabindex="0" role="button" aria-label="Fun fact: the lizard superpower">
         <div>
           <div class="card-accent"></div>
           <span class="card-tag">⚡ Superpower</span>
-          <h3 class="card-title">The Lizard Instinct</h3>
+          <h3 class="card-title">The Lizard from Hopper.</h3>
           <div class="card-reveal">
             <p>Like the Lizard from Hopper, Mr. van Niekerk possesses lightning-fast perception and adaptability. His superpower is reading a room — and a student — with uncanny precision.</p>
           </div>
@@ -540,6 +490,9 @@
         <button class="dot" aria-label="Quote 4"></button>
       </div>
 
+      <!-- ACCESSIBILITY FIX (Section 4): prev/next buttons are now included
+           in the tab order (tabindex="0" is the default for <button>).
+           :focus-visible styles are added in quote-wall.css. -->
       <div class="carousel-controls">
         <button class="ctrl-btn" id="prevBtn" aria-label="Previous quote">&#8592;</button>
         <button class="ctrl-btn" id="nextBtn" aria-label="Next quote">&#8594;</button>
@@ -562,12 +515,15 @@
       <span class="section-badge fade-in">Contact & Connect</span>
       <h2 class="section-title fade-in">Let's <span class="accent">connect</span></h2>
        <p class="consection-subtitle fade-in">Reach out to Mr. van Niekerk through official Belgium Campus channels.</p>
-     
     </div>
 
     <div class="contact-grid">
 
-      <div class="contact-card fade-in">
+      <!-- ACCESSIBILITY FIX (Section 5): Contact info cards were plain <div>s
+           with no tabindex, so keyboard focus skipped straight past them.
+           Added tabindex="0" to each card so keyboard users can reach and
+           read the Office Hours, Department, and Modules Taught content. -->
+      <div class="contact-card fade-in" tabindex="0">
         <div class="card-accent"></div>
         <span class="card-icon">🕐</span>
         <h3 class="card-title">Office Hours</h3>
@@ -578,7 +534,7 @@
         </ul>
       </div>
 
-      <div class="contact-card fade-in">
+      <div class="contact-card fade-in" tabindex="0">
         <div class="card-accent"></div>
         <span class="card-icon">🏛️</span>
         <h3 class="card-title">Department</h3>
@@ -589,7 +545,7 @@
         </ul>
       </div>
 
-      <div class="contact-card fade-in">
+      <div class="contact-card fade-in" tabindex="0">
         <div class="card-accent"></div>
         <span class="card-icon">📚</span>
         <h3 class="card-title">Modules Taught</h3>

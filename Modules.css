@@ -88,51 +88,53 @@
   z-index: 1;
 }
 
+/* BUG FIX: Was 'margin-left: 15rem' — a hardcoded pixel guess that breaks
+   on laptop and tablet widths. Replaced with 'margin: 4rem auto 0' so the
+   card auto-centres correctly at every viewport width. */
 .qualifications-card {
-max-width: 700px;
-margin-top: 4rem;
-margin-left: 15rem;
-padding: 1.8rem;
-background: var(--card);
-border: 1px solid var(--border);
-border-radius: 14px;
-backdrop-filter: blur(10px);
-box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  max-width: 700px;
+  margin: 4rem auto 0;
+  padding: 1.8rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
 }
 
 .qual-label {
-color: var(--mint);
-font-size: 0.8rem;
-text-transform: uppercase;
-letter-spacing: 0.15em;
-margin-bottom: 1.2rem;
+  color: var(--mint);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 1.2rem;
 }
 
 .qual-item {
-display: flex;
-align-items: flex-start;
-gap: 1rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
 }
 
 .qual-icon {
-font-size: 1.3rem;
+  font-size: 1.3rem;
 }
 
 .qual-degree {
-color: var(--white);
-font-weight: 600;
-margin: 0;
+  color: var(--white);
+  font-weight: 600;
+  margin: 0;
 }
 
 .qual-institution {
-color: var(--muted);
-margin-top: 0.25rem;
+  color: var(--muted);
+  margin-top: 0.25rem;
 }
 
 .qual-divider {
-height: 1px;
-background: var(--border);
-margin: 1rem 0;
+  height: 1px;
+  background: var(--border);
+  margin: 1rem 0;
 }
 
 /* ── RESPONSIVE ── */

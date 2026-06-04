@@ -26,9 +26,12 @@ aboutCards.forEach((card, index) => {
 });
 
 
-/* ====== ABOUT SECTION TYPING EFFECT ====== */
+/* ====== ABOUT SECTION TYPING EFFECT ======
+   BUG FIX: Original selector '.about-intro' matched no element in the HTML.
+   The intro paragraph lives directly inside #about as '#about > p'.
+   Using that selector so the typing animation now correctly activates. */
 
-const aboutText = document.querySelector('.about-intro');
+const aboutText = document.querySelector('#about > p');
 
 if (aboutText) {
 
@@ -83,11 +86,15 @@ counters.forEach(counter => {
 });
 
 
-/* ====== ABOUT SECTION GLOW EFFECT ====== */
+/* ====== GLOBAL GLOW EFFECT ======
+   BUG FIX: Original listener was bound only to the #about container,
+   so the glow cut off at the About section border when the mouse moved into
+   Modules. Now listening on the document body so the radial-gradient glow
+   tracks the cursor across the full page for consistent visual continuity. */
 
 const aboutSection = document.getElementById('about');
 
-window.addEventListener('mousemove', (e) => {
+document.body.addEventListener('mousemove', (e) => {
 
   const x = e.clientX / window.innerWidth;
   const y = e.clientY / window.innerHeight;

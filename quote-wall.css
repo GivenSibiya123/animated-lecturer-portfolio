@@ -68,7 +68,9 @@ body {
   color: var(--mint);
 }
 
-.qoutesection-subtitle {
+/* BUG FIX: Was '.qoutesection-subtitle' (o and u swapped).
+   HTML uses '.quotesection-subtitle' — corrected to match. */
+.quotesection-subtitle {
   font-size: 0.9rem;
   color: var(--muted);
   letter-spacing: 0.05em;
@@ -191,6 +193,8 @@ body {
   padding: 0 1rem;
 }
 
+/* BUG FIX (Accessibility): Added :focus styles so keyboard users can
+   see which control button is currently focused. */
 .ctrl-btn {
   width: 40px;
   height: 40px;
@@ -201,15 +205,23 @@ body {
   font-size: 1.1rem;
   cursor: pointer;
   pointer-events: all;
-  transition: background 0.3s, border-color 0.3s, transform 0.2s;
+  transition: background 0.3s, border-color 0.3s, transform 0.2s, box-shadow 0.2s;
   display: flex;
   align-items: center;
   justify-content: center;
+  outline: none;
 }
 
 .ctrl-btn:hover {
   background: var(--mint-faint);
   border-color: var(--mint);
+  transform: scale(1.1);
+}
+
+.ctrl-btn:focus-visible {
+  background: var(--mint-faint);
+  border-color: var(--mint);
+  box-shadow: 0 0 0 3px rgba(61, 214, 140, 0.45);
   transform: scale(1.1);
 }
 

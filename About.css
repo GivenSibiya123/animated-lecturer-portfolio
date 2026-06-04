@@ -83,8 +83,9 @@
 }
 
 /* ── RESPONSIVE ── */
-
-@media (max-width: 860px) {}
+/* BUG FIX: Previously @media (max-width: 860px) {} closed on same line,
+   trapping no rules inside and making responsive layout non-functional. */
+@media (max-width: 860px) {
   #about {
     padding: 5rem 2rem;
   }
@@ -92,6 +93,8 @@
   .about-container {
     grid-template-columns: 1fr;
   }
+}
+
 /* ── STATS SECTION ── */
 
 .about-stats {

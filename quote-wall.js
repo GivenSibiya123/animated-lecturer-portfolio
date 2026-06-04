@@ -66,6 +66,28 @@ nextBtn.addEventListener('click', () => {
   startAuto();
 });
 
+/* ── ACCESSIBILITY: keyboard support for prev/next buttons ──
+   BUG FIX (Accessibility): Arrow buttons were mouse-only. Added keyboard
+   listeners so Enter/Space trigger them, making the carousel fully
+   operable by keyboard users per WCAG 2.1 Level AA. */
+prevBtn.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' || e.key === ' ') {
+    e.preventDefault();
+    stopAuto();
+    showSlide(current - 1);
+    startAuto();
+  }
+});
+
+nextBtn.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' || e.key === ' ') {
+    e.preventDefault();
+    stopAuto();
+    showSlide(current + 1);
+    startAuto();
+  }
+});
+
 dots.forEach((dot, i) => {
   dot.addEventListener('click', () => {
     stopAuto();
@@ -74,17 +96,20 @@ dots.forEach((dot, i) => {
   });
 });
 
-/* ── SCROLL FADE IN ── */
+/* ── SCROLL FADE IN ──
+   BUG FIX: quoteobserver was declared but then observer (the Fun Facts
+   variable from a previously-loaded script) was used instead. Now using
+   quoteobserver consistently so this file has no dependency on fun-facts-section.js. */
 const quoteobserver = new IntersectionObserver((entries) => {
   entries.forEach((entry, i) => {
     if (entry.isIntersecting) {
       setTimeout(() => entry.target.classList.add('visible'), i * 150);
-      observer.unobserve(entry.target);
+      quoteobserver.unobserve(entry.target);
     }
   });
 }, { threshold: 0.15 });
 
-document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+document.querySelectorAll('#quotes .fade-in').forEach(el => quoteobserver.observe(el));
 
 /* ── INIT ── */
 showSlide(0);
