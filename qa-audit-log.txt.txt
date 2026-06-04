@@ -134,6 +134,18 @@ This fails the WCAG 2.1 AA requirement for keyboard accessibility.
 Action: Flagged to Quote Wall developer to fix button keyboard 
 reach and ensure buttons display a visible outline when focused.
 
+AUDIT 5 — MODULES SECTION
+Result: FAIL
+Finding: The green glow effect that follows the mouse cursor 
+in the About section disappears completely the moment you scroll 
+into the Modules section directly below it. The glow logic only 
+listens to the About section element and ignores the Modules 
+section entirely. The two sections sit right next to each other 
+but look visually disconnected as if built separately with no 
+communication between developers.
+Action: Flagged to UI developer and Modules developer to extend 
+the glow effect into the Modules section or replicate it there 
+so both sections feel consistent.
 AUDIT 4 — CONTACT SECTION
 Result: FAIL
 Finding: All three information cards in the Contact section — 
